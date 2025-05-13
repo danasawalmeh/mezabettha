@@ -1,13 +1,71 @@
+<?session_start();
+if (!isset($_SESSION['email'])) {
+    header("Location: home.php");
+    exit();
+}?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #fff;
+      padding: 20px 60px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: 'Cairo', sans-serif; /* for Arabic-friendly font */
+    }
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #000;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .nav-links a:hover {
+      color: #4486ad;
+    }
+  </style>
+  <nav>
+  <div class="logo">منزبطها</div>
+  <div class="nav-links">
+    <a href="home.php">Home</a>
+    <a href="about.php">About</a>
+    <a href="package.php">Package</a>
+    <a href="book.php">Book</a>
+    <a href="index.php">Login</a>
+
+  </div>
+</nav> 
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register & Login</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  
 </head>
 <body>
+
+  
 
   <!-- Register Form -->
   <div class="container" id="signup" style="display: none;">
@@ -37,8 +95,8 @@
     </form>
     <p class="or">----------or--------</p>
     <div class="icons">
-      <i class="fab fa-google"></i>
-      <i class="fab fa-facebook"></i>
+      <a href="google_auth.php"><i class="fab fa-google"></i></a>
+      <a href="facebook_auth.php"><i class="fab fa-facebook"></i></a>
     </div>
     <div class="links">
       <p>Already have an account?</p>
@@ -65,35 +123,32 @@
     </form>
     <p class="or">----------or--------</p>
     <div class="icons">
-      <i class="fab fa-google"></i>
-      <i class="fab fa-facebook"></i>
+      <a href="google_auth.php"><i class="fab fa-google"></i></a>
+      <a href="facebook_auth.php"><i class="fab fa-facebook"></i></a>
     </div>
     <div class="links">
       <p>Don't have an account?</p>
       <button id="signUpButton">Sign Up</button>
     </div>
   </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-   const signUpButton = document.getElementById("signUpButton");
-   const signInButton = document.getElementById("signInButton");
-   const signUpForm = document.getElementById("signup");
-   const signInForm = document.getElementById("signIn");
- 
-   // Show Sign Up form
-   signUpButton.addEventListener("click", function () {
-     signUpForm.style.display = "block";
-     signInForm.style.display = "none";
-   });
- 
-   // Show Sign In form
-   signInButton.addEventListener("click", function () {
-     signUpForm.style.display = "none";
-     signInForm.style.display = "block";
-   });
- });
- </script>
- 
-  <script src="script.js"></script>
+      const signUpButton = document.getElementById("signUpButton");
+      const signInButton = document.getElementById("signInButton");
+      const signUpForm = document.getElementById("signup");
+      const signInForm = document.getElementById("signIn");
+
+      signUpButton.addEventListener("click", function () {
+        signUpForm.style.display = "block";
+        signInForm.style.display = "none";
+      });
+
+      signInButton.addEventListener("click", function () {
+        signUpForm.style.display = "none";
+        signInForm.style.display = "block";
+      });
+    });
+  </script>
 </body>
 </html>
